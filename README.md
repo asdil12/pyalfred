@@ -27,4 +27,4 @@ ac.send(64, "Wake up, Neo", mac="00:11:22:33:44:55")
 
 # Receive all data with id 64 (returns a dict with mac keys)
 data = ac.fetch(64)
-
+```
