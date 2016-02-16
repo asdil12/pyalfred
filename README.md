@@ -16,7 +16,7 @@ You can find an easy example in `bin/pyalfred`.
 ```python
 import pyalfred
 
-ac = AlfredConnection()
+ac = pyalfred.AlfredConnection()
 
 # Send "Hello World" as id 64 (with the local mac as sender)
 ac.send(64, "Hello World")

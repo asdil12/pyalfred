@@ -7,7 +7,7 @@ import pyalfred
 
 
 if len(sys.argv) > 1:
-	ac = AlfredConnection()
+	ac = pyalfred.AlfredConnection()
 	if len(sys.argv) > 2:
 		push_data_type = int(sys.argv[1])
 		data = sys.argv[2]
