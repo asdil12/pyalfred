@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+
+import sys
+from pprint import pprint
+
+import pyalfred
+
+
+if len(sys.argv) > 1:
+	ac = AlfredConnection()
+	if len(sys.argv) > 2:
+		push_data_type = int(sys.argv[1])
+		data = sys.argv[2]
+		ac.send(push_data_type, data)
+	elif len(sys.argv) > 1:
+		req_data_type = int(sys.argv[1])
+		data = ac.fetch(req_data_type)
+		pprint(data)
+else:
+	print("Get: %s DATA_TYPE" % sys.argv[0])
+	print("Set: %s DATA_TYPE VALUE" % sys.argv[0])
