@@ -51,7 +51,7 @@ class AlfredConnection(object):
 		client.connect(self.socket)
 		return client
 
-	def send(self, data_type, data, mac=None):
+	def send(self, data_type, data, mac=None, gzip_data=False):
 		"""
 		Args:
 			data_type (int): Number between 1 and 255 (1-63 are reserved)
@@ -59,6 +59,7 @@ class AlfredConnection(object):
 		
 		Optional Args:
 			mac (string): Alfred server will use local mac if not set
+			gzip-data (bool): Send data gzip compressed
 		"""
 		client = self._get_alfred_socket()
 
@@ -69,6 +70,8 @@ class AlfredConnection(object):
 			mac = [0] * ETH_ALEN
 
 		data = data.encode("UTF-8")
+		if gzip_data:
+			data = gzip.compress(data)
 		data_tlv = alfred_tlv.pack(data_type, ALFRED_VERSION, len(data))
 		source = mac_address.pack(*mac)
 		pkt_data = alfred_data.pack(source, data_tlv) + data
