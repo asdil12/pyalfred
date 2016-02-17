@@ -70,7 +70,7 @@ class AlfredConnection(object):
 
 		data = data.encode("UTF-8")
 		data_tlv = alfred_tlv.pack(data_type, ALFRED_VERSION, len(data))
-		source = mac_address.pack([0]*ETH_ALEN)
+		source = mac_address.pack(*mac)
 		pkt_data = alfred_data.pack(source, data_tlv) + data
 
 		request_id = randint(0, 65535)
